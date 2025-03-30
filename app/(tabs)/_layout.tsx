@@ -9,11 +9,12 @@ import {
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { images } from '@/constants/images';
-import { icons } from '@/constants/icons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Feather from '@expo/vector-icons/Feather';
 
 type TabIconProps = {
   focused: boolean;
-  icon: ImageSourcePropType;
+  icon: React.ReactNode;
   title: string;
 };
 
@@ -21,10 +22,10 @@ const TabIcon: React.FC<TabIconProps> = ({ focused, icon, title }) => {
   if (focused) {
     return (
       <ImageBackground
-        className="flex flex-row w-full flex-1 min-w-28 justify-center items-center rounded-full overflow-hidden "
+        className="flex flex-row w-full flex-1 min-w-28 min-h-16 mt-4 justify-center items-center rounded-full overflow-hidden "
         source={images.highlight}
       >
-        <Image tintColor="#151312" className="size-5" source={icon} />
+        {icon}
         <Text className="text-secondary text-base font-semibold ml-2">
           {title}
         </Text>
@@ -32,9 +33,8 @@ const TabIcon: React.FC<TabIconProps> = ({ focused, icon, title }) => {
     );
   } else {
     return (
-      <View className="flex flex-row flex-1 size-full min-w-28 justify-center items-center">
-        <Image source={icon} tintColor="#A8B5DB" className="size-5" />
-        <Text className="text-base  ml-2">{title}</Text>
+      <View className="flex flex-row flex-1 size-full min-w-28 min-h-11 justify-center items-end  ">
+        {icon}
       </View>
     );
   }
@@ -42,14 +42,45 @@ const TabIcon: React.FC<TabIconProps> = ({ focused, icon, title }) => {
 
 const _Layout = () => {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: {
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        tabBarStyle: {
+          backgroundColor: '#0f0D23',
+          borderRadius: 50,
+          marginHorizontal: 20,
+          marginBottom: 20,
+          height: 52,
+          position: 'absolute',
+          overflow: 'hidden',
+          borderWidth: 1,
+          borderColor: '#0f0D23',
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.home} title="Home" />
+            <TabIcon
+              focused={focused}
+              icon={
+                <AntDesign
+                  name="home"
+                  size={24}
+                  color={focused ? '#151312' : '#A8B5DB'}
+                />
+              }
+              title="Home"
+            />
           ),
         }}
       />
@@ -59,7 +90,17 @@ const _Layout = () => {
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.search} title="Search" />
+            <TabIcon
+              focused={focused}
+              icon={
+                <AntDesign
+                  name="search1"
+                  size={24}
+                  color={focused ? '#151312' : '#A8B5DB'}
+                />
+              }
+              title="Search"
+            />
           ),
         }}
       />
@@ -69,7 +110,17 @@ const _Layout = () => {
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.save} title="Saved" />
+            <TabIcon
+              focused={focused}
+              icon={
+                <Feather
+                  name="bookmark"
+                  size={24}
+                  color={focused ? '#151312' : '#A8B5DB'}
+                />
+              }
+              title="Saved"
+            />
           ),
         }}
       />
@@ -79,7 +130,17 @@ const _Layout = () => {
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person} title="Profile" />
+            <TabIcon
+              focused={focused}
+              icon={
+                <AntDesign
+                  name="user"
+                  size={24}
+                  color={focused ? '#151312' : '#A8B5DB'}
+                />
+              }
+              title="Profile"
+            />
           ),
         }}
       />
