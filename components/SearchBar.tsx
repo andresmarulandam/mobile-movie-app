@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onPress, placeholder }: SearchBarProps) => {
   return (
-    <View className="flex-row rounded-full items-center justify-center  px-5  mx-auto bg-red-100">
+    <View className="flex-row  items-center justify-center  ">
       <AntDesign name="search1" size={20} color="gray" />
       <TextInput
         onPress={onPress}
