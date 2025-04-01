@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_CONFIG } from '@/services/api';
 
 interface popularMoviesProps {
   id: number;
@@ -12,15 +13,19 @@ const PopularMovies = () => {
 
   const options = {
     method: 'GET',
-    url: 'https://api.themoviedb.org/3/movie/popular',
-    params: { language: 'en-US', page: '1' },
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDIwYWEyNTA3ZTYxNGFmYWViYmQ2MmQyMGVhNmIyZCIsIm5iZiI6MTcyODg0MzYyMy42Niwic3ViIjoiNjcwYzBmNjczYmI0NTU3YzY2OWJiM2UyIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.1YRNW5eCjW393mpGsnMGbsWd8lHjLFIc0NvhVXhktFk',
+    url: `${API_CONFIG.BASE_URL}/discover/movie`,
+    params: {
+      include_adult: 'false',
+      include_video: 'false',
+      language: 'en-US',
+      page: '1',
+      sort_by: 'popularity.desc',
     },
+    headers: API_CONFIG.headers,
   };
 
+  console.log('API_CONFIG', API_CONFIG.headers);
+  console.log('API_CONFIG', API_CONFIG.BASE_URL);
   useEffect(() => {
     const fetchData = async () => {
       try {
