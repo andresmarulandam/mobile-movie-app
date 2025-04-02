@@ -12,12 +12,11 @@ const MovieCard = ({ id, poster_path, title }: Movie) => {
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
               : 'https://placehold.co/600x400/1a1a1a/ffffff.png',
           }}
-          className="w-36 h-52 rounded-lg"
+          className="w-36 h-48 rounded-lg"
           resizeMode="cover"
         />
-        <Text></Text>
         <Text
-          className="text-md font-bold text-white mt-2"
+          className="text-md font-bold text-white mt-1"
           numberOfLines={1}
           ellipsizeMode="tail"
         >

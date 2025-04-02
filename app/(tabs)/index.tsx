@@ -5,12 +5,12 @@ import { useRouter } from 'expo-router';
 import useFetch from '@/services/useFetch';
 import { fetchMovies } from '@/services/api';
 import MovieCard from '@/components/MovieCard';
+import LatestMovies from '@/components/LatestMovies';
 
 export default function Index() {
   const router = useRouter();
 
   const { data, loading, error } = useFetch(() => fetchMovies({ query: '' }));
-
   return (
     <View className="flex-1 bg-primary">
       <LinearGradient
@@ -53,10 +53,31 @@ export default function Index() {
       </View>
 
       <>
-        <Text className=" text-left ml-3 mt-5 mb-3 text-xl font-bold text-white">
+        <Text className=" text-left ml-3 mt-5  text-xl font-bold text-white">
           Latest Movies
         </Text>
       </>
+
+      <View className=" flex-1">
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color="#FFD700"
+            className="mt-10 self-center"
+          />
+        ) : error ? (
+          <Text>Error: {error.message}</Text>
+        ) : (
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <LatestMovies {...item} />}
+            contentContainerStyle={{ paddingHorizontal: 10 }}
+            className=" pt-2 mb-2"
+            numColumns={3}
+          />
+        )}
+      </View>
     </View>
   );
 }
