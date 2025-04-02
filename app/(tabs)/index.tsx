@@ -15,10 +15,10 @@ export default function Index() {
     <View className="flex-1 bg-primary">
       <LinearGradient
         colors={['#FFD700', '#030014']}
-        style={{ height: '20%' }}
+        style={{ height: '13%' }}
         className="justify-center items-center"
       >
-        <View className="w-11/12 mt-24 bg-dark-200 rounded-full px-5 ">
+        <View className="w-11/12 mt-14 bg-dark-200 rounded-full px-5 ">
           <SearchBar
             onPress={() => router.push('/search')}
             placeholder="Search for a movie"
