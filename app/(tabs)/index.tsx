@@ -3,14 +3,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 import SearchBar from '@/components/SearchBar';
 import { useRouter } from 'expo-router';
 import useFetch from '@/services/useFetch';
-import { fetchMovies } from '@/services/api';
+import { fetchLatestMovies, fetchTopRatesMovies } from '@/services/api';
 import MovieCard from '@/components/MovieCard';
 import LatestMovies from '@/components/LatestMovies';
 
 export default function Index() {
   const router = useRouter();
 
-  const { data, loading, error } = useFetch(() => fetchMovies({ query: '' }));
+  const {
+    data: latestMovies,
+    loading: latestMoviesLoading,
+    error: latestMoviesError,
+  } = useFetch(() => fetchLatestMovies({ query: '' }));
+
+  const {
+    data: topRatedMovies,
+    loading: topRatedLoading,
+    error: topRatedError,
+  } = useFetch(() => fetchTopRatesMovies({ query: '' }));
+
   return (
     <View className="flex-1 bg-primary">
       <LinearGradient
@@ -27,21 +38,21 @@ export default function Index() {
       </LinearGradient>
       <>
         <Text className=" text-left ml-3 mt-5 mb-3 text-lg font-bold text-white">
-          Popular Movies
+          Latest Movies
         </Text>
       </>
       <View>
-        {loading ? (
+        {latestMoviesLoading ? (
           <ActivityIndicator
             size="large"
             color="#FFD700"
             className="mt-10 self-center"
           />
-        ) : error ? (
-          <Text>Error: {error.message}</Text>
+        ) : latestMoviesError ? (
+          <Text>Error: {latestMoviesError.message}</Text>
         ) : (
           <FlatList
-            data={data}
+            data={latestMovies}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => <MovieCard {...item} />}
             horizontal
@@ -54,22 +65,22 @@ export default function Index() {
 
       <>
         <Text className=" text-left ml-3 mt-5  text-xl font-bold text-white">
-          Latest Movies
+          Top Rates Movies
         </Text>
       </>
 
       <View className=" flex-1">
-        {loading ? (
+        {topRatedLoading ? (
           <ActivityIndicator
             size="large"
             color="#FFD700"
             className="mt-10 self-center"
           />
-        ) : error ? (
-          <Text>Error: {error.message}</Text>
+        ) : topRatedError ? (
+          <Text>Error: {topRatedError.message}</Text>
         ) : (
           <FlatList
-            data={data}
+            data={topRatedMovies}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => <LatestMovies {...item} />}
             contentContainerStyle={{ paddingHorizontal: 10 }}
