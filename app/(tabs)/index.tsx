@@ -63,6 +63,7 @@ export default function Index() {
             className=" pt-2"
             onEndReached={loadMoreLatest}
             onEndReachedThreshold={0.5}
+            maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
           />
         )}
       </View>
@@ -92,6 +93,7 @@ export default function Index() {
             numColumns={3}
             onEndReached={loadMoreTopRated}
             onEndReachedThreshold={0.5}
+            maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
           />
         )}
       </View>
