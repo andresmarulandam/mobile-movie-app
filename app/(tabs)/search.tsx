@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   FlatList,
+  Image,
   StyleSheet,
   Text,
   View,
@@ -12,6 +13,7 @@ import { useRouter } from 'expo-router';
 import useFetch from '@/services/useFetch';
 import { fetchLatestMovies } from '@/services/api';
 import LatestMovies from '@/components/LatestMovies';
+import { images } from '@/constants/images';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -54,12 +56,12 @@ const Search = () => {
       </LinearGradient>
       <>
         <Text className=" text-left ml-3 mt-5 mb-3 text-xl font-bold text-white">
-          Search results for
+          Search results for:
           <Text className="text-[#FFD700]"> {searchQuery}</Text>
         </Text>
       </>
 
-      <View className="flex-1 bg-red-200">
+      <View className="flex-1">
         {loading ? (
           <ActivityIndicator
             size="large"
@@ -76,6 +78,27 @@ const Search = () => {
             contentContainerStyle={{ paddingHorizontal: 10 }}
             className=" pt-2 mb-2"
             numColumns={3}
+            ListEmptyComponent={
+              !loading && !error ? (
+                <View className="flex-1 justify-center items-center">
+                  <Text>
+                    {searchQuery.trim() ? (
+                      <Image
+                        source={images.noMovies}
+                        style={{ width: 650, height: 650 }}
+                        resizeMode="contain"
+                      />
+                    ) : (
+                      <Image
+                        source={images.searchMovie}
+                        style={{ width: 650, height: 650 }}
+                        resizeMode="contain"
+                      />
+                    )}
+                  </Text>
+                </View>
+              ) : null
+            }
           />
         )}
       </View>
