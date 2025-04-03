@@ -22,7 +22,7 @@ const Search = () => {
     data: latestMovies,
     loading,
     error,
-    fetchData,
+    fetchDataSearchBar,
     reset,
   } = useFetch(() => fetchLatestMovies({ query: searchQuery }), false);
 
@@ -30,7 +30,7 @@ const Search = () => {
     // DEBOUNCE TECNIQUE
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
-        await fetchData();
+        await fetchDataSearchBar();
       } else {
         reset();
       }
