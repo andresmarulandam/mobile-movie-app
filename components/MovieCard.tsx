@@ -1,8 +1,14 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import { memo } from 'react';
 import { Link } from 'expo-router';
 
-const MovieCard = ({ id, poster_path, title }: Movie) => {
+interface MovieCardProps {
+  id: number;
+  poster_path: string;
+  title: string;
+}
+
+const MovieCard = memo(({ id, poster_path, title }: MovieCardProps) => {
   return (
     <Link href={`/movies/${id}`} asChild>
       <TouchableOpacity className="mx-2  w-36">
@@ -25,7 +31,7 @@ const MovieCard = ({ id, poster_path, title }: Movie) => {
       </TouchableOpacity>
     </Link>
   );
-};
+});
 
 export default MovieCard;
 

@@ -1,9 +1,21 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Link } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-const LatestMovies = ({ id, poster_path, title, vote_average }: Movie) => {
+interface LatestMoviesProps {
+  id: number;
+  poster_path: string;
+  title: string;
+  vote_average: number;
+}
+
+const LatestMovies = ({
+  id,
+  poster_path,
+  title,
+  vote_average,
+}: LatestMoviesProps) => {
   return (
     <Link href={`/movies/${id}`} asChild>
       <TouchableOpacity className="mx-2 mt-2 pb-2 w-32">
@@ -29,6 +41,6 @@ const LatestMovies = ({ id, poster_path, title, vote_average }: Movie) => {
   );
 };
 
-export default LatestMovies;
+export default memo(LatestMovies);
 
 const styles = StyleSheet.create({});
