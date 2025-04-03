@@ -10,16 +10,24 @@ export const API_CONFIG = {
   },
 };
 
-export const fetchLatestMovies = async ({ query }: { query: string }) => {
+export const fetchLatestMovies = async ({
+  query,
+  page = 1,
+}: {
+  query: string;
+  page?: number;
+}) => {
   const endpoint = query
-    ? `${API_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-    : `${API_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
+    ? `${API_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(
+        query,
+      )}&page=${page}`
+    : `${API_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc&page=${page}`;
 
   try {
     const response = await axios.get(endpoint, {
       headers: API_CONFIG.headers,
     });
-    return response.data.results;
+    return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
     throw new Error(
@@ -30,18 +38,24 @@ export const fetchLatestMovies = async ({ query }: { query: string }) => {
   }
 };
 
-export const fetchTopRatesMovies = async ({ query }: { query: string }) => {
+export const fetchTopRatesMovies = async ({
+  query,
+  page = 1,
+}: {
+  query: string;
+  page?: number;
+}) => {
   const endpoint = query
     ? `${API_CONFIG.BASE_URL}/movie/top_rated?query=${encodeURIComponent(
         query,
-      )}`
-    : `${API_CONFIG.BASE_URL}/movie/top_rated?sort_by=popularity.desc`;
+      )}&page=${page}`
+    : `${API_CONFIG.BASE_URL}/movie/top_rated?sort_by=popularity.desc&page=${page}`;
 
   try {
     const response = await axios.get(endpoint, {
       headers: API_CONFIG.headers,
     });
-    return response.data.results;
+    return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
     throw new Error(

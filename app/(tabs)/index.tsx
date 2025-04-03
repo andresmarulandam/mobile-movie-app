@@ -14,13 +14,15 @@ export default function Index() {
     data: latestMovies,
     loading: latestMoviesLoading,
     error: latestMoviesError,
-  } = useFetch(() => fetchLatestMovies({ query: '' }));
+    loadMore: loadMoreLatest,
+  } = useFetch((page) => fetchLatestMovies({ query: '', page }));
 
   const {
     data: topRatedMovies,
     loading: topRatedLoading,
     error: topRatedError,
-  } = useFetch(() => fetchTopRatesMovies({ query: '' }));
+    loadMore: loadMoreTopRated,
+  } = useFetch((page) => fetchTopRatesMovies({ query: '', page }));
 
   return (
     <View className="flex-1 bg-primary">
@@ -58,7 +60,9 @@ export default function Index() {
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 10 }}
-            className=" pt-2  "
+            className=" pt-2"
+            onEndReached={loadMoreLatest}
+            onEndReachedThreshold={0.5}
           />
         )}
       </View>
@@ -86,6 +90,8 @@ export default function Index() {
             contentContainerStyle={{ paddingHorizontal: 10 }}
             className=" pt-2 mb-2"
             numColumns={3}
+            onEndReached={loadMoreTopRated}
+            onEndReachedThreshold={0.5}
           />
         )}
       </View>
