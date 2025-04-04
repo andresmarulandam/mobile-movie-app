@@ -22,6 +22,12 @@ Mobile Movie App is a mobile application built with [Expo](https://expo.dev) tha
 
 ## 📱 Screenshots
 
+
+![Screenshot_2025-04-04-15-23-36-024_host exp exponent](https://github.com/user-attachments/assets/d382403e-bc6d-4a24-920c-f40f40e17f77)
+![Screenshot_2025-04-04-15-23-23-839_host exp exponent](https://github.com/user-attachments/assets/3d007b8a-3b8f-4e44-806b-b9d2ffe01e41)
+![Screenshot_2025-04-04-15-22-36-760_host exp exponent](https://github.com/user-attachments/assets/724fcbd9-7ba2-420c-be8c-c26226f860b3)
+![Screenshot_2025-04-04-15-22-43-998_host exp exponent](https://github.com/user-attachments/assets/0a88dca9-05ed-4b98-82dd-7390ddf85fb0)
+
 ## 📦 Installation
 
 Follow these steps to set up and run the project locally:
