@@ -65,3 +65,22 @@ export const fetchTopRatesMovies = async ({
     );
   }
 };
+
+export const fetchMovieDetails = async (
+  movieId: string,
+): Promise<MovieDetails> => {
+  const endpoint = `${API_CONFIG.BASE_URL}/movie/${movieId}?api_key=${API_CONFIG.ACCESS_TOKEN}`;
+  try {
+    const response = await axios.get(endpoint, {
+      headers: API_CONFIG.headers,
+    });
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    throw new Error(
+      `Failed to fetch movies: ${
+        axiosError.response?.statusText || axiosError.message
+      }`,
+    );
+  }
+};
