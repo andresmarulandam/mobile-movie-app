@@ -1,50 +1,63 @@
-# Welcome to your Expo app 👋
+# 🎥 Mobile Movie App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Mobile Movie App is a mobile application built with [Expo](https://expo.dev) that allows users to explore popular, top-rated, and the latest movies. The app leverages the [The Movie Database (TMDb)](https://www.themoviedb.org/) API to fetch movie information such as titles, descriptions, ratings, and posters.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+- **Explore Popular Movies**: Discover the most popular movies of the moment.
+- **Search Movies**: Find your favorite movies using the integrated search bar.
+- **Top-Rated Movies**: Browse movies with the highest ratings.
+- **Movie Details**: View detailed information about each movie, including synopsis, rating, and more.
+- **Modern Interface**: Sleek and responsive design optimized for mobile devices.
+- **Dynamic Pagination**: Load more movies as you scroll without losing your current position.
+
+## 🛠️ Technologies Used
+
+- **Frontend**: [React Native](https://reactnative.dev/) with [Expo](https://expo.dev)
+- **Navigation**: [Expo Router](https://expo.dev/router) for file-based routing
+- **Styling**: [Tailwind CSS for React Native](https://github.com/vadimdemedes/tailwind-rn) (optional, if configured)
+- **API**: [The Movie Database (TMDb)](https://www.themoviedb.org/) for movie data
+- **State Management**: Custom hooks (`useFetch`) for API requests and pagination
+- **Icons**: [AntDesign](https://github.com/ant-design/ant-design-icons) and [Feather Icons](https://feathericons.com/)
+
+## 📱 Screenshots
+
+## 📦 Installation
+
+Follow these steps to set up and run the project locally:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-username/mobile-movie-app.git
+   cd mobile-movie-app
+   ```
+
+2. **Install dependencies**:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Set up environment variables**:
+   Create a `.env` file in the root of the project and add your TMDb API access token:
+   ```
+   EXPO_API_Read_Access_Token=YOUR_ACCESS_TOKEN
+   ```
+4. **Start the application**:
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+5. **Open the app**:
+   - Scan the QR code in your terminal with the [Expo Go](https://expo.dev/client) app on your mobile device.
+   - Or use an Android/iOS emulator.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🌐 API Used
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+This project uses the [The Movie Database (TMDb)](https://www.themoviedb.org/) API. To use the API, you need an access token. Follow these steps to obtain it:
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. Create an account on [TMDb](https://www.themoviedb.org/).
+2. Go to your account settings and generate a read access token.
+3. Add the token to the `.env` file as shown in the installation section.
